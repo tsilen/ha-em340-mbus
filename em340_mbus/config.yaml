@@ -1,0 +1,23 @@
+name: EM340 M-Bus
+version: "0.1.0"
+slug: em340_mbus
+description: Read-only Carlo Gavazzi EM340 M-Bus meter reader that publishes values to MQTT (HA discovery).
+arch:
+  - aarch64
+  - amd64
+startup: application
+boot: auto
+init: false
+uart: true
+services:
+  - mqtt:need
+options:
+  serial_port: null
+  baud_rate: 2400
+  address: 1
+  poll_interval: 10
+schema:
+  serial_port: device(subsystem=tty)
+  baud_rate: list(300|2400|9600)
+  address: int(1,250)
+  poll_interval: int(5,3600)
